@@ -132,7 +132,10 @@ const (
 	DefaultElasticityMultiplier     = 2          // Bounds the maximum gas limit an EIP-1559 block may have.
 	InitialBaseFee                  = 1000000000 // Initial base fee for EIP-1559 blocks.
 
-	MaxCodeSize     = 24576           // Maximum bytecode to permit for a contract
+	// SPECTER: MaxCodeSize increased from 24576 to 65536 (64KB).
+	// Required for PoseidonT3 library (55,856 bytes) used in Merkle tree commitments.
+	// This is a sovereign chain customization — standard for app-specific L1s.
+	MaxCodeSize     = 65536           // Maximum bytecode to permit for a contract (Specter: 64KB)
 	MaxInitCodeSize = 2 * MaxCodeSize // Maximum initcode to permit in a creation transaction and create instructions
 
 	// Precompiled contract gas prices
